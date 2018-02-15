@@ -1,5 +1,9 @@
 package org.saqib.hibernate.CourseDetails.main;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -19,32 +23,35 @@ public class CourseDetailsMain {
 	
 	public static void main(String[] args)
 	{
-		CourseDetails courseDetails = new CourseDetails();
-		Enrollment enrollment = new Enrollment();
-		StudentDetails studentDetails = new StudentDetails();	
-		ClassDetails classDetails = new ClassDetails();
-		GradeDetails gradeDetails = new GradeDetails();
-		ClassSchedule classSchedule = new ClassSchedule();
-		classSchedule.setRoom("405");
+		
 		
 		
 	
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
+		String studentid = "1";
+		String term = "Spring";
+		String courseid = "2";
+		String section = "A";
 		
-		courseDetails = session.get(CourseDetails.class, 2);
-		studentDetails = session.get(StudentDetails.class,1);
-		ClassDetailsId classDetailsId = new ClassDetailsId("Spring", "A", courseDetails);
-		classDetails = session.get(ClassDetails.class, classDetailsId);
-		ClassScheduleId  classScheduleId = new ClassScheduleId(classDetails, "Monday", "10:00");
-		classSchedule.setClassScheduleId(classScheduleId);
+		Query query = session.createQuery("from GradeDetails where studentid = ? and term = ? and section = ? and courseid = ?");
+		query.setParameter(0, Integer.parseInt(studentid));
+		query.setParameter(1, term);
+		query.setParameter(2, section);
+		query.setParameter(3, Integer.parseInt(courseid));
+		
+		List<GradeDetails> outputlist = (List<GradeDetails>) ((org.hibernate.query.Query) query).list();
 		
 		
 		
-		session.save(classSchedule);
+		//session.save(classSchedule);
 		session.getTransaction().commit();
-		//System.out.println(classDetails.getInstructorDetails().getInstructorId());
+		for(GradeDetails g: outputlist)
+		{
+			System.out.println(g.getGrade());
+		}
+		//System.out.println(studentlist.size());
 		
 		
 	}

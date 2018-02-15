@@ -22,7 +22,7 @@ public class ClassDetailsId implements Serializable{
 	@JoinColumn(name="courseid",referencedColumnName="courseId")
 	private CourseDetails courseDetails;
 	
-	
+	public ClassDetailsId() {}
 	
 	
 	public ClassDetailsId(String term, String section, CourseDetails courseDetails) {

@@ -24,6 +24,8 @@ public class EnrollmentId implements Serializable{
 		@JoinColumn(name="section",referencedColumnName="section")
 	})
 	private ClassDetails classDetails;
+	
+	public EnrollmentId() {}
 	public EnrollmentId(StudentDetails studentDetails,  ClassDetails classDetails) {
 		super();
 		this.studentDetails = studentDetails;

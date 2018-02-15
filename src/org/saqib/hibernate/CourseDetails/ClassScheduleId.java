@@ -20,6 +20,7 @@ public class ClassScheduleId implements Serializable{
 	private ClassDetails classDetails;
 	private String day;
 	private String time;
+	public ClassScheduleId() {}
 	
 	public ClassScheduleId(ClassDetails classDetails, String day, String time) {
 		super();
