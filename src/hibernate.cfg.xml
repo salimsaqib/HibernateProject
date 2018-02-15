@@ -35,11 +35,12 @@
         <property name="hbm2ddl.auto">update</property>
 
         <!-- Names the annotated entity class -->
-          <mapping class="org.saqib.hibernate.CourseDetails.CourseDetails"/>
+         <mapping class="org.saqib.hibernate.CourseDetails.CourseDetails"/>
          <mapping class="org.saqib.hibernate.CourseDetails.StudentDetails"/>
          <mapping class="org.saqib.hibernate.CourseDetails.InstructorDetails"/>
          <mapping class="org.saqib.hibernate.CourseDetails.ClassDetails"/>
          <mapping class="org.saqib.hibernate.CourseDetails.Enrollment"/>
+         <mapping class="org.saqib.hibernate.CourseDetails.GradeDetails"/>
 
 
 

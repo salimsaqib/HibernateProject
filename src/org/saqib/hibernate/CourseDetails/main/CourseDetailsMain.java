@@ -8,6 +8,8 @@ import org.saqib.hibernate.CourseDetails.ClassDetailsId;
 import org.saqib.hibernate.CourseDetails.CourseDetails;
 import org.saqib.hibernate.CourseDetails.Enrollment;
 import org.saqib.hibernate.CourseDetails.EnrollmentId;
+import org.saqib.hibernate.CourseDetails.GradeDetails;
+import org.saqib.hibernate.CourseDetails.GradeDetailsId;
 import org.saqib.hibernate.CourseDetails.InstructorDetails;
 import org.saqib.hibernate.CourseDetails.StudentDetails;
 
@@ -19,6 +21,8 @@ public class CourseDetailsMain {
 		Enrollment enrollment = new Enrollment();
 		StudentDetails studentDetails = new StudentDetails();	
 		ClassDetails classDetails = new ClassDetails();
+		GradeDetails gradeDetails = new GradeDetails();
+		gradeDetails.setGrade(3.5);
 		
 		
 	
@@ -27,20 +31,19 @@ public class CourseDetailsMain {
 		session.beginTransaction();
 		
 		courseDetails = session.get(CourseDetails.class, 2);
-		studentDetails = session.get(StudentDetails.class,2);
-		ClassDetailsId classDetailsId = new ClassDetailsId("Spring", "D", courseDetails);
-		classDetails.setClassDetailsid(classDetailsId);
+		studentDetails = session.get(StudentDetails.class,1);
+		ClassDetailsId classDetailsId = new ClassDetailsId("Spring", "A", courseDetails);
 		classDetails = session.get(ClassDetails.class, classDetailsId);
-		enrollment.setEnrollmentId(new EnrollmentId(studentDetails, classDetails));
+		EnrollmentId enrollmentId = new EnrollmentId(studentDetails, classDetails);
+		enrollment = session.get(Enrollment.class, enrollmentId);
+		GradeDetailsId gradeDetailsId = new GradeDetailsId(enrollment);
+		gradeDetails.setGradeDetailsId(gradeDetailsId);
 		
 		
 		
-		
-		
-		
-		//session.save(enrollment);
+		session.save(gradeDetails);
 		session.getTransaction().commit();
-		System.out.println(classDetails.getInstructorDetails().getInstructorId());
+		//System.out.println(classDetails.getInstructorDetails().getInstructorId());
 		
 		
 	}
