@@ -41,6 +41,7 @@
          <mapping class="org.saqib.hibernate.CourseDetails.ClassDetails"/>
          <mapping class="org.saqib.hibernate.CourseDetails.Enrollment"/>
          <mapping class="org.saqib.hibernate.CourseDetails.GradeDetails"/>
+         <mapping class="org.saqib.hibernate.CourseDetails.ClassSchedule"/>
 
 
 
